@@ -32,25 +32,37 @@
       transform="translate(142.69 -634.312)" fill="#eee" />
   </svg>
 
-</div>
-<h1>COUNT: {{count$ | async}}</h1>
-<ng-container *ngIf="{
-      products: products$ | async,
-    } as data">
-  <!-- <div class="header">
-        <input #inputElement>
-        <button (click)="onCreateBook(inputElement.value)">Create book</button>
-    </div> -->
   <div class="container">
     <table>
       <th>ID</th>
       <th>Name</th>
       <th>Action</th>
       <tbody>
-        <tr *ngFor="let book of data.products">
-          <td>{{book.id}}</td>
-          <td>{{book.name}}</td>
-          <!-- <td><button (click)="onDeleteBook(book)">Delete</button></td> -->
+        <tr *ngFor="let p of prods">
+          <td>{{p.id}}</td>
+          <td>{{p.name}}</td>
+          <td><button (click)="addCart(p)">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<h1>CART COUNT: {{count$ | async}}</h1>
+<ng-container *ngIf="{
+      products: products$ | async,
+    } as data">
+
+  <div class="container">
+    <table>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Action</th>
+      <tbody>
+        <tr *ngFor="let p of data.products">
+          <td>{{p.id}}</td>
+          <td>{{p.name}}</td>
+          <td><button (click)="deleteFromCart(p)">Delete</button></td>
         </tr>
       </tbody>
     </table>
