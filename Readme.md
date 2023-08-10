@@ -10,6 +10,6 @@ mvn spring-boot:run
 ```
 # angular
 ```
-cd web-app
+cd web
 ng serve -o
 ```
