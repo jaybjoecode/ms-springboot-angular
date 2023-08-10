@@ -1,9 +1,11 @@
 package com.example.apiserver.controllers;
 
-import com.example.apiserver.dtos.TopicDTO;
+import com.example.apiserver.core.CustomError;
+import com.example.apiserver.core.CustomResponse;
 import com.example.apiserver.models.Topic;
 import com.example.apiserver.services.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,29 +15,44 @@ import java.util.List;
 public class TopicController {
     @Autowired
     private TopicService service;
+    public ResponseEntity<?> getPerson() {
+        var list = service.getAll();
+        return ResponseEntity.ok(list);
+    }
 
     @GetMapping
-    public List<Topic> getAll() {
-        return service.getAll();
+    public CustomResponse<List<Topic>> getAll() {
+        var list = service.getAll();
+        return CustomResponse.ok(list);
     }
 
     @GetMapping("{id}")
-    public Topic get(@PathVariable String id) {
-        return service.get(id);
+    public CustomResponse<Topic> get(@PathVariable String id) {
+        var response = service.get(id);
+        return CustomResponse.ok(response);
     }
 
     @PostMapping
-    public void create(@RequestBody Topic topicDTO) {
+    public CustomResponse<?> create(@RequestBody Topic topicDTO) {
         service.create(topicDTO);
+        return CustomResponse.ok();
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable String id, @RequestBody Topic topicDTO) {
+    public CustomResponse<?> update(@PathVariable String id, @RequestBody Topic topicDTO) {
         service.update(id, topicDTO);
+        return CustomResponse.ok();
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable String id) {
+    public CustomResponse<?> delete(@PathVariable String id) {
         service.delete(id);
+        return CustomResponse.ok();
+    }
+
+    @GetMapping("test-error")
+    public CustomResponse<?> testError() {
+        // simulate error
+        throw new CustomError("Topics blocked!");
     }
 }
