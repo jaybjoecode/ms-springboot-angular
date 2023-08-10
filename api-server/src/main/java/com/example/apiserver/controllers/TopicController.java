@@ -2,6 +2,7 @@ package com.example.apiserver.controllers;
 
 import com.example.apiserver.core.CustomError;
 import com.example.apiserver.core.CustomResponse;
+import com.example.apiserver.dtos.TopicDTO;
 import com.example.apiserver.models.Topic;
 import com.example.apiserver.services.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,14 @@ public class TopicController {
     }
 
     @PostMapping
-    public CustomResponse<?> create(@RequestBody Topic topicDTO) {
-        service.create(topicDTO);
+    public CustomResponse<?> create(@RequestBody TopicDTO dto) {
+        service.create(dto);
         return CustomResponse.ok();
     }
 
     @PutMapping("{id}")
-    public CustomResponse<?> update(@PathVariable String id, @RequestBody Topic topicDTO) {
-        service.update(id, topicDTO);
+    public CustomResponse<?> update(@PathVariable String id, @RequestBody TopicDTO dto) {
+        service.update(id, dto);
         return CustomResponse.ok();
     }
 
