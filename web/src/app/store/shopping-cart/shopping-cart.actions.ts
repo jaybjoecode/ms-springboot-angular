@@ -20,7 +20,7 @@ export const updateShoppingCart = createAction(
     '[ShoppingCart] update',
     props<{ item: Product }>());
 export const updateShoppingCartSuccess = createAction(
-    '[ShoppingCart] update  success',
+    '[ShoppingCart] update success',
     props<{ item: Product }>()
 );
 export const deleteShoppingCart = createAction(
@@ -28,6 +28,6 @@ export const deleteShoppingCart = createAction(
     props<{ item: Product }>()
 );
 export const deleteShoppingCartSuccess = createAction(
-    '[ShoppingCart] delete  success',
+    '[ShoppingCart] delete success',
     props<{ item: Product }>()
 );

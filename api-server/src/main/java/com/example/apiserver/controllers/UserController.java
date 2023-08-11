@@ -10,8 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private UserRepository userRepository;
-    private UserService userService;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
     public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping
     public List<User> get() {
-        return this.userService.getall();
+        return this.userService.getAll();
     }
 
     @GetMapping("/{id}")

@@ -10,17 +10,17 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository repository;
 
     public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        this.repository = userRepository;
     }
 
-    public List<User> getall() {
-        return this.userRepository.findAll();
+    public List<User> getAll() {
+        return this.repository.findAll();
     }
 
     public User getUserById(long id) {
-        return this.userRepository.getUserById(id);
+        return this.repository.getUserById(id);
     }
 }

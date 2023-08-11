@@ -16,6 +16,7 @@ import java.util.List;
 public class TopicController {
     @Autowired
     private TopicService service;
+
     public ResponseEntity<?> getPerson() {
         var list = service.getAll();
         return ResponseEntity.ok(list);
