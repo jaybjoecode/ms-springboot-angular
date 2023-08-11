@@ -5,25 +5,14 @@ import com.example.apiserver.models.Topic;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TopicMapper {
+public class TopicMapper extends BaseMapper<TopicDTO, Topic> {
     public TopicMapper() {
     }
 
-    public Topic map(TopicDTO source, Topic target) {
-        if (target == null) {
-            target = new Topic();
-        }
-        setDirectFields(source, target);
-        return target;
-    }
-
-    public Topic map(TopicDTO source) {
-        return map(source, null);
-    }
-
-    private void setDirectFields(TopicDTO source, Topic target) {
-        if (target.getName() != null) target.setName(source.getName());
-        if (target.getDescription() != null) target.setDescription(source.getDescription());
+    @Override
+    protected void setParameters(TopicDTO dto, Topic entity) {
+        if (dto.getName() != null) entity.setName(dto.getName());
+        if (dto.getDescription() != null) entity.setDescription(dto.getDescription());
     }
 }
 

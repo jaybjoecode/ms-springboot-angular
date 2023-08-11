@@ -6,12 +6,13 @@ import com.example.apiserver.models.Topic;
 import com.example.apiserver.repositories.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
+@Transactional
 public class TopicService {
 
     @Autowired
@@ -35,6 +36,7 @@ public class TopicService {
     public void create(TopicDTO dto) {
         Topic topic = mapper.map(dto);
         repository.save(topic);
+
     }
 
     public void update(String id, TopicDTO dto) {
